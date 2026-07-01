@@ -23,55 +23,51 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-20 px-5">
+    <section id="experience" className="py-24 px-5">
       <div className="max-w-4xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
+          viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-14"
+          className="section-header"
         >
-          <span className="text-sm font-semibold text-indigo-600 dark:text-indigo-400 tracking-widest uppercase">Career</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold mt-2 text-slate-900 dark:text-white">
+          <p className="section-label">Career</p>
+          <h2 className="section-title">
             Work <span className="gradient-text">Experience</span>
           </h2>
         </motion.div>
 
         <div className="relative">
-          {/* Line */}
-          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-slate-200 dark:bg-slate-700 md:-translate-x-px" />
+          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gray-200/80 dark:bg-slate-700/50 md:-translate-x-px" />
 
-          {/* Animated line overlay */}
           <motion.div
             initial={{ height: 0 }}
             whileInView={{ height: '100%' }}
             viewport={{ once: true }}
             transition={{ duration: 1.5, ease: 'easeOut' }}
-            className="absolute left-6 md:left-1/2 top-0 w-px bg-gradient-to-b from-indigo-500 via-purple-500 to-indigo-500 md:-translate-x-px"
+            className="absolute left-6 md:left-1/2 top-0 w-px bg-gradient-to-b from-indigo-500/60 via-purple-500/60 to-indigo-500/60 md:-translate-x-px"
           />
 
           {experiences.map((exp, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              className={`relative flex flex-col md:flex-row gap-6 md:gap-0 mb-8 md:mb-12 ${
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.5, delay: i * 0.12 }}
+              className={`relative flex flex-col md:flex-row gap-6 md:gap-0 mb-8 md:mb-10 last:mb-0 ${
                 i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
               }`}
             >
-              {/* Dot */}
-              <div className="absolute left-6 md:left-1/2 top-2 -translate-x-1/2 w-3 h-3 rounded-full bg-indigo-500 dark:bg-indigo-400 border-2 border-white dark:border-slate-900 z-10" />
+              <div className="absolute left-6 md:left-1/2 top-2 -translate-x-1/2 w-3 h-3 rounded-full bg-indigo-500 dark:bg-indigo-400 border-2 border-white dark:border-slate-900 z-10 shadow-sm shadow-indigo-500/30" />
 
-              {/* Content */}
-              <div className={`ml-12 md:ml-0 md:w-1/2 ${i % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
-                <div className="bg-white dark:bg-slate-800/80 rounded-2xl p-6 card-shadow border border-slate-100 dark:border-slate-700 hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                  <span className="text-xs font-semibold text-indigo-600 dark:text-indigo-400">{exp.period}</span>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mt-1">{exp.role}</h3>
-                  <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-2">{exp.company}</p>
-                  <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{exp.desc}</p>
+              <div className={`ml-14 md:ml-0 md:w-1/2 ${i % 2 === 0 ? 'md:pr-10 md:text-right' : 'md:pl-10'}`}>
+                <div className="bg-white/70 dark:bg-slate-800/60 backdrop-blur-sm rounded-2xl p-6 card-shadow border border-gray-100/80 dark:border-slate-700/50 hover:shadow-lg hover:shadow-indigo-500/5 hover:-translate-y-1 transition-all duration-300">
+                  <span className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 tracking-wider">{exp.period}</span>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mt-1.5">{exp.role}</h3>
+                  <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2.5">{exp.company}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{exp.desc}</p>
                 </div>
               </div>
             </motion.div>

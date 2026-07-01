@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion'
 import {
   SiPython, SiFastapi, SiReact, SiNextdotjs, SiDocker,
-  SiLangchain, SiTensorflow,
-  SiPostgresql, SiRedis,
+  SiLangchain, SiTensorflow, SiPostgresql, SiRedis,
 } from 'react-icons/si'
 import { FaGem, FaRobot, FaMicrosoft } from 'react-icons/fa'
 
@@ -10,12 +9,12 @@ const skills = [
   { name: 'Python', icon: <SiPython />, color: 'text-blue-600' },
   { name: 'FastAPI', icon: <SiFastapi />, color: 'text-emerald-600' },
   { name: 'React', icon: <SiReact />, color: 'text-cyan-500' },
-  { name: 'Next.js', icon: <SiNextdotjs />, color: 'text-slate-900 dark:text-white' },
+  { name: 'Next.js', icon: <SiNextdotjs />, color: 'text-gray-900 dark:text-white' },
   { name: 'Docker', icon: <SiDocker />, color: 'text-sky-500' },
   { name: 'Azure', icon: <FaMicrosoft />, color: 'text-blue-500' },
   { name: 'LangChain', icon: <SiLangchain />, color: 'text-green-600' },
   { name: 'TensorFlow', icon: <SiTensorflow />, color: 'text-orange-500' },
-  { name: 'OpenAI', icon: <FaRobot />, color: 'text-emerald-700' },
+  { name: 'OpenAI', icon: <FaRobot />, color: 'text-emerald-600' },
   { name: 'Gemini', icon: <FaGem />, color: 'text-blue-500' },
   { name: 'PostgreSQL', icon: <SiPostgresql />, color: 'text-indigo-600' },
   { name: 'Redis', icon: <SiRedis />, color: 'text-red-500' },
@@ -23,17 +22,17 @@ const skills = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-20 px-5">
-      <div className="max-w-6xl mx-auto">
+    <section id="skills" className="py-24 px-5">
+      <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
+          viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-14"
+          className="section-header"
         >
-          <span className="text-sm font-semibold text-indigo-600 dark:text-indigo-400 tracking-widest uppercase">Expertise</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold mt-2 text-slate-900 dark:text-white">
+          <p className="section-label">Expertise</p>
+          <h2 className="section-title">
             Tech <span className="gradient-text">Stack</span>
           </h2>
         </motion.div>
@@ -44,15 +43,15 @@ export default function Skills() {
               key={skill.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.35, delay: i * 0.04 }}
               whileHover={{ y: -8, rotate: 2 }}
-              className="bg-white dark:bg-slate-800/80 rounded-2xl p-5 text-center card-shadow border border-slate-100 dark:border-slate-700 cursor-default hover:shadow-lg hover:shadow-indigo-500/10 hover:border-indigo-200 dark:hover:border-indigo-500/30 transition-all duration-300"
+              className="group bg-white/70 dark:bg-slate-800/60 backdrop-blur-sm rounded-2xl p-6 text-center card-shadow border border-gray-100/80 dark:border-slate-700/50 cursor-default hover:shadow-lg hover:shadow-indigo-500/10 hover:border-indigo-200/50 dark:hover:border-indigo-500/30 transition-all duration-300"
             >
-              <div className={`text-3xl mb-2 ${skill.color}`}>
+              <div className={`text-3xl mb-3 ${skill.color} transition-transform duration-300 group-hover:scale-110`}>
                 {skill.icon}
               </div>
-              <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">{skill.name}</p>
+              <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">{skill.name}</p>
             </motion.div>
           ))}
         </div>
