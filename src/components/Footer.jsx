@@ -6,26 +6,16 @@ export default function Footer() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      className="footer"
+      className="py-8 px-5 border-t border-slate-100 dark:border-slate-800"
     >
-      <div className="footer-inner">
-        <p>&copy; {new Date().getFullYear()} Harsh. Built with React & Framer Motion</p>
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p className="text-sm text-slate-400 dark:text-slate-500">
+          © {new Date().getFullYear()} Harsh Tekwani. All rights reserved.
+        </p>
+        <p className="text-xs text-slate-400 dark:text-slate-500">
+          Built with React + Framer Motion
+        </p>
       </div>
-
-      <style>{`
-        .footer {
-          border-top: 1px solid var(--glass-border);
-          padding: 32px 5%;
-          margin-top: 40px;
-        }
-        .footer-inner {
-          max-width: 1200px;
-          margin: 0 auto;
-          text-align: center;
-          color: var(--text-muted);
-          font-size: 0.85rem;
-        }
-      `}</style>
     </motion.footer>
   )
 }

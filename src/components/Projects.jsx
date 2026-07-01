@@ -1,145 +1,113 @@
 import { motion } from 'framer-motion'
-import { HiExternalLink, HiCode } from 'react-icons/hi'
+import { HiExternalLink } from 'react-icons/hi'
+import { VscGithub } from 'react-icons/vsc'
 
 const projects = [
   {
-    title: 'Project One',
-    desc: 'A modern web application built with React and Node.js, featuring real-time updates and a sleek interface.',
-    tags: ['React', 'Node.js', 'Socket.io', 'MongoDB'],
-    live: '#',
-    code: '#',
+    title: 'AI Chat Platform',
+    desc: 'Real-time conversational AI platform powered by LLMs with vector search, memory, and multi-modal support.',
+    tags: ['Python', 'FastAPI', 'LangChain', 'React', 'PostgreSQL', 'Redis'],
+    github: 'https://github.com/HarshTekwani21',
+    demo: '#',
+    featured: true,
+    gradient: 'from-blue-500 to-indigo-600',
   },
   {
-    title: 'Project Two',
-    desc: 'An e-commerce platform with a custom CMS, payment integration, and responsive design.',
-    tags: ['Next.js', 'Stripe', 'Tailwind', 'Prisma'],
-    live: '#',
-    code: '#',
+    title: 'ML Pipeline Orchestrator',
+    desc: 'Automated ML pipeline system with distributed training, model registry, and A/B testing infrastructure.',
+    tags: ['Python', 'TensorFlow', 'Docker', 'Azure', 'FastAPI'],
+    github: 'https://github.com/HarshTekwani21',
+    demo: '#',
+    featured: true,
+    gradient: 'from-purple-500 to-pink-600',
   },
   {
-    title: 'Project Three',
-    desc: 'A dashboard application with interactive charts, data visualization, and dark mode support.',
-    tags: ['React', 'D3.js', 'TypeScript', 'Firebase'],
-    live: '#',
-    code: '#',
+    title: 'DevOps Dashboard',
+    desc: 'Comprehensive monitoring dashboard for CI/CD pipelines, container health, and infrastructure metrics.',
+    tags: ['React', 'TypeScript', 'Docker', 'Node.js', 'Redis'],
+    github: 'https://github.com/HarshTekwani21',
+    demo: '#',
+    featured: false,
+    gradient: 'from-emerald-500 to-teal-600',
   },
 ]
 
 export default function Projects() {
   return (
-    <section id="projects" className="section">
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2 className="section-title gradient-text">Projects</h2>
-        <p className="section-subtitle">Things I've built</p>
-      </motion.div>
+    <section id="projects" className="py-20 px-5">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-14"
+        >
+          <span className="text-sm font-semibold text-indigo-600 dark:text-indigo-400 tracking-widest uppercase">Portfolio</span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold mt-2 text-slate-900 dark:text-white">
+            Featured <span className="gradient-text">Projects</span>
+          </h2>
+        </motion.div>
 
-      <div className="projects-grid">
-        {projects.map((p, i) => (
-          <motion.article
-            key={p.title}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6, delay: i * 0.15 }}
-            className="project-card glass"
-            whileHover={{ y: -8, transition: { duration: 0.3 } }}
-          >
-            <div className="project-top">
-              <div className="project-number">0{i + 1}</div>
-              <div className="project-links">
-                <a href={p.code} target="_blank" rel="noreferrer" title="Source Code">
-                  <HiCode size={20} />
-                </a>
-                <a href={p.live} target="_blank" rel="noreferrer" title="Live Demo">
-                  <HiExternalLink size={20} />
-                </a>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((p, i) => (
+            <motion.article
+              key={p.title}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              whileHover={{ y: -8 }}
+              className="group bg-white dark:bg-slate-800/80 rounded-3xl overflow-hidden card-shadow border border-slate-100 dark:border-slate-700 hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300"
+            >
+              {/* Preview */}
+              <div className="relative h-44 overflow-hidden bg-gradient-to-br p-6 flex items-end">
+                <div className={`absolute inset-0 bg-gradient-to-br ${p.gradient} opacity-90`} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                {p.featured && (
+                  <span className="relative z-10 px-3 py-1 text-[11px] font-bold text-white bg-white/20 backdrop-blur-sm rounded-full">
+                    Featured
+                  </span>
+                )}
+                <div className="absolute top-4 right-4 flex gap-2 z-10">
+                  <a
+                    href={p.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/40 transition-colors"
+                  >
+                    <VscGithub className="w-4 h-4" />
+                  </a>
+                  <a
+                    href={p.demo}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/40 transition-colors"
+                  >
+                    <HiExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
-            </div>
-            <h3 className="project-title">{p.title}</h3>
-            <p className="project-desc">{p.desc}</p>
-            <div className="project-tags">
-              {p.tags.map((t) => (
-                <span key={t} className="project-tag">{t}</span>
-              ))}
-            </div>
-          </motion.article>
-        ))}
-      </div>
 
-      <style>{`
-        .projects-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 24px;
-        }
-        .project-card {
-          padding: 32px 28px;
-          display: flex;
-          flex-direction: column;
-          cursor: default;
-        }
-        .project-top {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-          margin-bottom: 20px;
-        }
-        .project-number {
-          font-size: 2rem;
-          font-weight: 800;
-          color: var(--text-muted);
-          line-height: 1;
-        }
-        .project-links {
-          display: flex;
-          gap: 12px;
-        }
-        .project-links a {
-          color: var(--text-muted);
-          transition: var(--transition);
-          display: flex;
-        }
-        .project-links a:hover {
-          color: var(--accent-1);
-        }
-        .project-title {
-          font-size: 1.2rem;
-          font-weight: 700;
-          margin-bottom: 12px;
-        }
-        .project-desc {
-          color: var(--text-secondary);
-          font-size: 0.9rem;
-          line-height: 1.7;
-          margin-bottom: 20px;
-          flex: 1;
-        }
-        .project-tags {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-        }
-        .project-tag {
-          padding: 4px 12px;
-          border-radius: 50px;
-          font-size: 0.75rem;
-          font-weight: 500;
-          background: rgba(108, 99, 255, 0.1);
-          color: var(--accent-1);
-          border: 1px solid rgba(108, 99, 255, 0.15);
-        }
-        @media (max-width: 1024px) {
-          .projects-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 640px) {
-          .projects-grid { grid-template-columns: 1fr; }
-        }
-      `}</style>
+              {/* Body */}
+              <div className="p-6">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{p.title}</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4 line-clamp-2">{p.desc}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {p.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="px-2.5 py-1 text-[11px] font-medium text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10 rounded-md"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </div>
     </section>
   )
 }
