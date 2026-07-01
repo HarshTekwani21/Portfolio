@@ -1,31 +1,30 @@
 import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
 import { HiArrowRight } from 'react-icons/hi'
-import { HiOutlineDocumentText } from 'react-icons/hi2'
+import { HiOutlineMail } from 'react-icons/hi'
 import {
-  SiPython, SiReact, SiFastapi, SiTensorflow, SiDocker, SiLangchain,
+  SiPython, SiReact, SiFastapi, SiLangchain, SiTensorflow, SiDocker,
 } from 'react-icons/si'
-import { FaGem, FaRobot, FaMicrosoft } from 'react-icons/fa'
 import { VscGithub } from 'react-icons/vsc'
 import { FaLinkedinIn } from 'react-icons/fa'
-
-const roles = ['AI/ML Engineer', 'Generative AI Developer', 'Full Stack Developer']
-
-const orbitTechs = [
-  { icon: <SiPython />, label: 'Python', angle: 0, color: 'text-blue-600' },
-  { icon: <SiReact />, label: 'React', angle: 45, color: 'text-cyan-500' },
-  { icon: <SiFastapi />, label: 'FastAPI', angle: 90, color: 'text-emerald-600' },
-  { icon: <SiTensorflow />, label: 'TensorFlow', angle: 135, color: 'text-orange-500' },
-  { icon: <SiDocker />, label: 'Docker', angle: 180, color: 'text-sky-500' },
-  { icon: <SiLangchain />, label: 'LangChain', angle: 225, color: 'text-green-600' },
-  { icon: <FaGem />, label: 'Gemini', angle: 270, color: 'text-blue-500' },
-  { icon: <FaRobot />, label: 'OpenAI', angle: 315, color: 'text-emerald-600' },
-]
+import devImg from '../assets/dev-3d.png'
+import plantImg from '../assets/plant-3d.png'
+import rocketImg from '../assets/rocket-3d.png'
 
 const socials = [
-  { icon: <VscGithub className="w-4 h-4" />, href: 'https://github.com/HarshTekwani21', label: 'GitHub' },
-  { icon: <FaLinkedinIn className="w-4 h-4" />, href: 'https://linkedin.com/in/harshtekwani', label: 'LinkedIn' },
-  { icon: <HiOutlineDocumentText className="w-4 h-4" />, href: '/cv.pdf', label: 'Resume' },
+  { icon: <VscGithub className="w-4 h-4" />, label: 'GitHub', href: 'https://github.com/HarshTekwani21' },
+  { icon: <FaLinkedinIn className="w-4 h-4" />, label: 'LinkedIn', href: 'https://linkedin.com/in/harshtekwani' },
+  { icon: <HiOutlineMail className="w-4 h-4" />, label: 'Email', href: 'mailto:harsht3kwani@gmail.com' },
+]
+
+// Floating tech badges around the illustration (matches reference placement)
+const floatBadges = [
+  { icon: <SiPython />, label: 'Python', color: 'text-blue-500', pos: 'top-2 left-1/2 -translate-x-1/2', delay: 0 },
+  { icon: <SiLangchain />, label: 'LangChain', color: 'text-green-600', pos: 'top-1/3 -left-4', delay: 0.6 },
+  { icon: <SiReact />, label: 'React', color: 'text-cyan-500', pos: 'top-1/4 -right-4', delay: 0.9 },
+  { icon: <SiFastapi />, label: 'FastAPI', color: 'text-emerald-600', pos: 'top-1/2 -right-6', delay: 1.2 },
+  { icon: <SiTensorflow />, label: 'TensorFlow', color: 'text-orange-500', pos: 'bottom-24 -left-6', delay: 1.5 },
+  { icon: <SiDocker />, label: 'Docker', color: 'text-sky-500', pos: 'bottom-10 right-0', delay: 1.8 },
 ]
 
 function LetterReveal({ text, className, gradient }) {
@@ -38,8 +37,8 @@ function LetterReveal({ text, className, gradient }) {
               key={`${wi}-${ci}`}
               initial={{ opacity: 0, y: 40, rotateX: -90 }}
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ duration: 0.5, delay: 1.2 + (wi * 0.1 + ci * 0.04), ease: [0.2, 0.65, 0.3, 0.9] }}
-              className={`inline-block ${gradient ? 'gradient-text' : ''}`}
+              transition={{ duration: 0.5, delay: 0.9 + (wi * 0.1 + ci * 0.04), ease: [0.2, 0.65, 0.3, 0.9] }}
+              className={`inline-block ${gradient ? 'gradient-text-animated' : ''}`}
             >
               {char}
             </motion.span>
@@ -53,75 +52,77 @@ function LetterReveal({ text, className, gradient }) {
 export default function Hero() {
   const sectionRef = useRef(null)
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] })
-  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
+  const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '16%'])
+
+  // Mouse parallax
+  const mx = useMotionValue(0)
+  const my = useMotionValue(0)
+  const rx = useSpring(useTransform(my, [-0.5, 0.5], [6, -6]), { stiffness: 120, damping: 20 })
+  const ry = useSpring(useTransform(mx, [-0.5, 0.5], [-6, 6]), { stiffness: 120, damping: 20 })
+  const charX = useSpring(useTransform(mx, [-0.5, 0.5], [-12, 12]), { stiffness: 80, damping: 18 })
+
+  const onMove = (e) => {
+    const r = e.currentTarget.getBoundingClientRect()
+    mx.set((e.clientX - r.left) / r.width - 0.5)
+    my.set((e.clientY - r.top) / r.height - 0.5)
+  }
+  const onLeave = () => { mx.set(0); my.set(0) }
 
   return (
-    <section id="home" ref={sectionRef} className="relative min-h-screen flex items-center pt-32 pb-16 px-5 overflow-hidden">
-      {/* Mesh gradient background */}
-      <div className="absolute inset-0 pointer-events-none" style={{ transform: `translateY(${bgY})` }}>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(79,70,229,0.08),transparent)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_50%_at_100%_0%,rgba(124,58,237,0.06),transparent)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_50%_at_0%_100%,rgba(59,130,246,0.06),transparent)]" />
-        {/* Noise texture */}
-        <div className="absolute inset-0 opacity-[0.015] mix-blend-multiply bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBudW1PY3RhdmVzPSIzIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI2YpIiBvcGFjaXR5PSIwIi8+PC9zdmc+')] dark:opacity-[0.03] animate-noise" />
-        {/* Gradient orbs */}
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-indigo-300/20 dark:bg-indigo-500/10 rounded-full blur-3xl animate-blob" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-purple-300/20 dark:bg-purple-500/10 rounded-full blur-3xl animate-blob-delayed" />
-        <div className="absolute top-1/3 left-1/3 w-64 h-64 bg-blue-200/20 dark:bg-blue-500/5 rounded-full blur-3xl animate-pulse-glow" />
-      </div>
-
-      {/* Subtle grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] pointer-events-none" />
-
-      <div className="relative w-full max-w-7xl mx-auto grid lg:grid-cols-[45%_55%] gap-8 lg:gap-12 items-center">
+    <section
+      id="home"
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center pt-28 pb-16 px-6 sm:px-8 lg:px-12 overflow-hidden"
+    >
+      <motion.div
+        style={{ y: contentY }}
+        className="relative w-full max-w-7xl mx-auto grid lg:grid-cols-[46%_54%] gap-10 lg:gap-8 items-center"
+      >
         {/* ============ LEFT ============ */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] }}
         >
-          {/* Greeting */}
+          {/* Label */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-sm font-semibold text-indigo-600 dark:text-indigo-400 bg-indigo-50/80 dark:bg-indigo-500/10 rounded-full border border-indigo-100/50 dark:border-indigo-500/20"
+            className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-xs font-bold tracking-[0.18em] uppercase text-indigo-600 dark:text-indigo-300 bg-white/60 dark:bg-indigo-500/10 backdrop-blur-md rounded-full border border-indigo-100/70 dark:border-indigo-500/20 shadow-sm"
           >
-            <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse-glow" />
-            Hi, I'm Harsh
+            <span className="relative flex w-2 h-2">
+              <span className="absolute inline-flex w-full h-full rounded-full bg-indigo-400 opacity-75 animate-ping" />
+              <span className="relative inline-flex rounded-full w-2 h-2 bg-indigo-500" />
+            </span>
+            Hi, I'm
           </motion.div>
 
-          {/* Heading */}
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] mb-4 text-gray-900 dark:text-white">
-            <LetterReveal text="Harsh" />
-            <br />
+          {/* Name */}
+          <h1 className="text-6xl sm:text-7xl lg:text-[5.25rem] font-extrabold tracking-tight leading-[0.92] mb-4 text-gray-900 dark:text-white">
+            <LetterReveal text="Harsh" />{' '}
             <LetterReveal text="Tekwani" gradient />
           </h1>
 
-          {/* Roles */}
-          <div className="space-y-0.5 mb-6">
-            {roles.map((role, i) => (
-              <motion.p
-                key={role}
-                initial={{ opacity: 0, x: -24 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 + i * 0.12, duration: 0.5, ease: [0.2, 0.65, 0.3, 0.9] }}
-                className="text-xl sm:text-2xl lg:text-3xl font-bold gradient-text"
-              >
-                {role}
-              </motion.p>
-            ))}
-          </div>
+          {/* Role */}
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.5 }}
+            className="text-2xl sm:text-3xl font-bold gradient-text-animated mb-6"
+          >
+            AI/ML Engineer &amp; Full Stack Developer
+          </motion.p>
 
           {/* Description */}
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9, duration: 0.5 }}
-            className="text-base sm:text-lg text-gray-500 dark:text-gray-400 max-w-lg mb-10 leading-relaxed"
+            className="text-lg text-gray-500 dark:text-gray-400 max-w-xl mb-9 leading-relaxed"
           >
-            Building intelligent systems and modern web experiences. Passionate about
-            AI, machine learning, and crafting beautiful full-stack applications.
+            I build intelligent systems, machine learning pipelines, and elegant web
+            experiences — turning complex AI problems into scalable, production-ready products.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -129,15 +130,15 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.05, duration: 0.5 }}
-            className="flex flex-wrap gap-4 mb-10"
+            className="flex flex-wrap gap-4 mb-9"
           >
             <a href="#projects" className="btn-primary group">
-              <span>Explore Projects</span>
-              <HiArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              <span className="relative z-10">Explore My Work</span>
+              <HiArrowRight className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
-            <a href="/cv.pdf" target="_blank" className="btn-secondary">
-              <HiOutlineDocumentText className="w-4 h-4" />
-              Download Resume
+            <a href="#contact" className="btn-secondary group">
+              <HiOutlineMail className="w-4 h-4" />
+              Get In Touch
             </a>
           </motion.div>
 
@@ -146,131 +147,125 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2 }}
-            className="flex items-center gap-6"
+            className="flex flex-wrap items-center gap-3"
           >
-            <span className="text-xs font-medium text-gray-400 dark:text-gray-500 tracking-widest uppercase">Find me</span>
-            <div className="h-px w-8 bg-gray-200 dark:bg-slate-700" />
             {socials.map((s) => (
-              <a
+              <motion.a
                 key={s.label}
                 href={s.href}
                 target={s.href.startsWith('http') ? '_blank' : undefined}
                 rel="noreferrer"
-                className="text-gray-400 dark:text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-                aria-label={s.label}
+                whileHover={{ y: -3 }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-black/5 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-200 dark:hover:border-indigo-500/30 hover:shadow-lg hover:shadow-indigo-500/10 transition-all"
               >
                 {s.icon}
-              </a>
+                {s.label}
+              </motion.a>
             ))}
           </motion.div>
         </motion.div>
 
-        {/* ============ RIGHT ============ */}
+        {/* ============ RIGHT — Illustration card ============ */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
+          initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.2, 0.65, 0.3, 0.9] }}
-          className="relative flex items-center justify-center hidden lg:flex"
+          transition={{ duration: 0.8, delay: 0.25, ease: [0.2, 0.65, 0.3, 0.9] }}
+          onMouseMove={onMove}
+          onMouseLeave={onLeave}
+          className="relative hidden lg:block"
+          style={{ perspective: 1200 }}
         >
-          {/* Illustration glass card */}
-          <div className="relative w-[380px] h-[380px] xl:w-[440px] xl:h-[440px] rounded-3xl bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm border border-white/30 dark:border-slate-700/30 shadow-xl shadow-indigo-500/5 flex items-center justify-center overflow-hidden">
-            {/* Animated bg inside card */}
-            <div className="absolute inset-0">
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/60 via-purple-50/40 to-blue-50/60 dark:from-indigo-900/20 dark:via-purple-900/10 dark:to-blue-900/20" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-indigo-300/15 dark:bg-indigo-500/10 rounded-full blur-2xl animate-blob" />
-              <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-purple-300/15 dark:bg-purple-500/10 rounded-full blur-2xl animate-blob-delayed" />
-              <div className="absolute bottom-1/3 left-1/4 w-40 h-40 bg-blue-200/15 dark:bg-blue-500/5 rounded-full blur-2xl animate-pulse-glow" />
+          <motion.div
+            style={{ rotateX: rx, rotateY: ry, transformStyle: 'preserve-3d' }}
+            className="relative mx-auto max-w-[520px]"
+          >
+            {/* Gradient card */}
+            <div className="relative aspect-square rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-indigo-500 via-purple-500 to-blue-500 shadow-[0_40px_90px_-30px_rgba(79,70,229,0.6)]">
+              {/* Inner glow blobs */}
+              <div className="absolute inset-0">
+                <div className="absolute top-0 left-0 w-72 h-72 bg-white/20 rounded-full blur-3xl" />
+                <div className="absolute bottom-0 right-0 w-72 h-72 bg-fuchsia-400/30 rounded-full blur-3xl" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-indigo-300/20 rounded-full blur-3xl animate-pulse-glow" />
+              </div>
+              {/* Subtle grid */}
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:36px_36px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
+
+              {/* Ground glow */}
+              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-56 h-16 bg-black/20 rounded-[100%] blur-2xl" />
+
+              {/* Character */}
+              <motion.img
+                src={devImg}
+                alt="Harsh Tekwani — developer illustration"
+                style={{ x: charX, transform: 'translateZ(60px)' }}
+                animate={{ y: [-8, 8, -8] }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[62%] max-w-[300px] drop-shadow-2xl select-none pointer-events-none"
+              />
+
+              {/* Decorative plant */}
+              <motion.img
+                src={plantImg}
+                alt=""
+                aria-hidden
+                animate={{ y: [-4, 4, -4] }}
+                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                className="absolute bottom-5 right-6 w-16 select-none pointer-events-none drop-shadow-lg"
+              />
+              {/* Decorative rocket */}
+              <motion.img
+                src={rocketImg}
+                alt=""
+                aria-hidden
+                animate={{ y: [6, -6, 6], rotate: [0, 6, 0] }}
+                transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute top-8 left-8 w-14 select-none pointer-events-none drop-shadow-lg"
+              />
             </div>
 
-            {/* Developer emoji */}
-            <motion.span
-              className="relative text-8xl xl:text-9xl select-none"
-              animate={{ y: [-6, 6, -6] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              👨‍💻
-            </motion.span>
-
-            {/* Floating dots */}
-            {[...Array(6)].map((_, i) => (
+            {/* Floating tech badges */}
+            {floatBadges.map((b) => (
               <motion.div
-                key={i}
-                className="absolute w-1.5 h-1.5 rounded-full bg-indigo-400/30 dark:bg-indigo-400/20"
-                animate={{
-                  x: [Math.random() * 100 - 50, Math.random() * 100 - 50],
-                  y: [Math.random() * 100 - 50, Math.random() * 100 - 50],
-                  opacity: [0.3, 0.8, 0.3],
-                }}
-                transition={{
-                  duration: 4 + Math.random() * 4,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                  delay: Math.random() * 2,
-                }}
-                style={{ left: `${20 + Math.random() * 60}%`, top: `${20 + Math.random() * 60}%` }}
-              />
-            ))}
-          </div>
-
-          {/* Orbiting tech badges */}
-          {orbitTechs.map((tech, i) => {
-            const rad = (tech.angle * Math.PI) / 180
-            const radius = 220 + (i % 2 === 0 ? 10 : -10)
-            const x = Math.cos(rad) * radius
-            const y = Math.sin(rad) * radius
-            const duration = 12 + (i % 3) * 3
-
-            return (
-              <motion.div
-                key={tech.label}
-                initial={{ opacity: 0, scale: 0 }}
+                key={b.label}
+                initial={{ opacity: 0, scale: 0.4 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.8 + i * 0.08, type: 'spring', stiffness: 200 }}
-                className="absolute"
-                style={{
-                  left: 'calc(50% - 20px)',
-                  top: 'calc(50% - 20px)',
-                }}
+                transition={{ delay: 1.4 + b.delay * 0.25, type: 'spring', stiffness: 220 }}
+                className={`absolute z-20 ${b.pos}`}
+                style={{ transform: 'translateZ(90px)' }}
               >
                 <motion.div
-                  animate={{
-                    x: [x, x + 8, x - 8, x],
-                    y: [y, y - 6, y + 6, y],
-                  }}
-                  transition={{
-                    duration,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                    delay: i * 0.3,
-                  }}
-                  className="relative"
+                  animate={{ y: [-6, 6, -6] }}
+                  transition={{ duration: 4 + b.delay, repeat: Infinity, ease: 'easeInOut', delay: b.delay }}
+                  whileHover={{ scale: 1.12, y: -4 }}
+                  className="flex items-center gap-1.5 px-3.5 py-2 bg-white/95 dark:bg-slate-800/95 backdrop-blur-md rounded-full border border-white/70 dark:border-white/10 shadow-lg shadow-indigo-900/10 text-xs font-semibold text-gray-700 dark:text-gray-200 whitespace-nowrap hover:shadow-xl hover:shadow-indigo-500/25 cursor-default transition-all"
                 >
-                  <motion.div
-                    whileHover={{ scale: 1.15, y: -4 }}
-                    className="flex items-center gap-1.5 px-3 py-1.5 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-full border border-gray-100 dark:border-slate-700 shadow-md text-xs font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap hover:shadow-lg hover:shadow-indigo-500/10 hover:border-indigo-200 dark:hover:border-indigo-500/30 cursor-default transition-shadow"
-                  >
-                    <span className={`text-sm ${tech.color}`}>{tech.icon}</span>
-                    <span>{tech.label}</span>
-                  </motion.div>
+                  <span className={`text-base ${b.color}`}>{b.icon}</span>
+                  <span>{b.label}</span>
                 </motion.div>
               </motion.div>
-            )
-          })}
+            ))}
+          </motion.div>
         </motion.div>
 
-        {/* Mobile tech badges */}
-        <div className="lg:hidden flex flex-wrap gap-2 justify-center mt-4">
-          {orbitTechs.map((tech) => (
-            <span
-              key={tech.label}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-white/90 dark:bg-slate-800/90 rounded-full border border-gray-100 dark:border-slate-700 text-gray-600 dark:text-gray-300 shadow-sm"
-            >
-              <span className={`text-sm ${tech.color}`}>{tech.icon}</span>
-              {tech.label}
-            </span>
-          ))}
+        {/* Mobile character + badges */}
+        <div className="lg:hidden">
+          <div className="relative mx-auto w-56 h-56 rounded-[2rem] overflow-hidden bg-gradient-to-br from-indigo-500 via-purple-500 to-blue-500 mb-6">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.25),transparent_60%)]" />
+            <img src={devImg} alt="developer illustration" className="absolute bottom-2 left-1/2 -translate-x-1/2 w-40" />
+          </div>
+          <div className="flex flex-wrap gap-2 justify-center">
+            {floatBadges.map((b) => (
+              <span
+                key={b.label}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-white/80 dark:bg-slate-800/80 backdrop-blur-md rounded-full border border-black/5 dark:border-white/10 text-gray-600 dark:text-gray-300 shadow-sm"
+              >
+                <span className={`text-sm ${b.color}`}>{b.icon}</span>
+                {b.label}
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

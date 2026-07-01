@@ -44,10 +44,15 @@ export default function Navbar({ dark, setDark }) {
         animate={{
           paddingLeft: scrolled ? '12px' : '20px',
           paddingRight: scrolled ? '12px' : '20px',
-          height: scrolled ? '52px' : '64px',
+          height: scrolled ? '54px' : '66px',
+          width: scrolled ? '90%' : '100%',
         }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
-        className="flex items-center justify-between w-full max-w-5xl mx-4 rounded-2xl bg-white/75 dark:bg-slate-900/75 backdrop-blur-xl border border-white/20 dark:border-slate-700/30 shadow-lg shadow-black/5"
+        transition={{ duration: 0.35, ease: [0.2, 0.65, 0.3, 0.9] }}
+        className={`flex items-center justify-between max-w-5xl mx-4 rounded-full bg-white/70 dark:bg-slate-900/70 backdrop-blur-2xl border border-white/40 dark:border-slate-700/40 transition-shadow duration-300 ${
+          scrolled
+            ? 'shadow-[0_8px_30px_-8px_rgba(17,24,39,0.15)]'
+            : 'shadow-[0_4px_20px_-8px_rgba(17,24,39,0.08)]'
+        }`}
         style={{ borderRadius: '9999px' }}
       >
         <a href="#home" className="text-lg font-extrabold tracking-tight gradient-text shrink-0 px-2">
@@ -59,7 +64,7 @@ export default function Navbar({ dark, setDark }) {
             <a
               key={l.href}
               href={l.href}
-              className={`relative px-3 py-1.5 text-sm font-medium rounded-full transition-colors ${
+              className={`relative px-3 py-1.5 text-sm font-medium transition-colors ${
                 active === l.href.slice(1)
                   ? 'text-indigo-600 dark:text-indigo-400'
                   : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
@@ -69,7 +74,7 @@ export default function Navbar({ dark, setDark }) {
               {active === l.href.slice(1) && (
                 <motion.div
                   layoutId="nav-active"
-                  className="absolute inset-0 bg-indigo-50 dark:bg-indigo-500/10 rounded-full -z-10"
+                  className="absolute left-3 right-3 -bottom-0.5 h-0.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
                   transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                 />
               )}
@@ -81,7 +86,7 @@ export default function Navbar({ dark, setDark }) {
           <a
             href="/cv.pdf"
             target="_blank"
-            className="hidden md:inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-white bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full hover:shadow-lg hover:shadow-indigo-500/20 transition-all hover:-translate-y-0.5"
+            className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full shadow-md shadow-indigo-500/30 hover:shadow-lg hover:shadow-indigo-500/40 transition-all hover:-translate-y-0.5"
           >
             <HiOutlineDocumentText className="w-3.5 h-3.5" />
             Resume

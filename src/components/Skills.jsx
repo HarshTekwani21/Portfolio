@@ -22,7 +22,7 @@ const skills = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 px-5">
+    <section id="skills" className="py-20 px-6 sm:px-8 lg:px-12 scroll-mt-28">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -33,7 +33,7 @@ export default function Skills() {
         >
           <p className="section-label">Expertise</p>
           <h2 className="section-title">
-            Tech <span className="gradient-text">Stack</span>
+            Tech Stack &amp; <span className="gradient-text">Skills</span>
           </h2>
         </motion.div>
 

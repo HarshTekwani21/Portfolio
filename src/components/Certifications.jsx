@@ -36,7 +36,7 @@ const certs = [
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="py-24 px-5">
+    <section id="certifications" className="py-20 px-6 sm:px-8 lg:px-12 scroll-mt-28">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

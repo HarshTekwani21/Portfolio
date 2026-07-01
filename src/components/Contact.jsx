@@ -13,7 +13,7 @@ const links = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 px-5">
+    <section id="contact" className="py-20 px-6 sm:px-8 lg:px-12 scroll-mt-28">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

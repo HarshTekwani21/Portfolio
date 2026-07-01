@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
+import { HiSparkles } from 'react-icons/hi'
 
 const stats = [
-  { value: 20, suffix: '+', label: 'Projects' },
-  { value: 2, suffix: '+', label: 'Years Experience' },
+  { value: 3, suffix: '+', label: 'Years Experience' },
+  { value: 20, suffix: '+', label: 'Projects Shipped' },
   { value: 15, suffix: '+', label: 'AI Technologies' },
-  { value: 10, suffix: '+', label: 'Happy Clients' },
+  { value: 100, suffix: '%', label: 'Dedication' },
 ]
 
 function Counter({ end, duration = 2 }) {
@@ -25,7 +26,7 @@ function Counter({ end, duration = 2 }) {
             const elapsed = (now - startTime) / 1000
             const progress = Math.min(elapsed / duration, 1)
             const eased = 1 - Math.pow(1 - progress, 3)
-            setCount(Math.floor(0 + (end - 0) * eased))
+            setCount(Math.floor(end * eased))
             if (progress < 1) requestAnimationFrame(step)
           }
           requestAnimationFrame(step)
@@ -42,27 +43,45 @@ function Counter({ end, duration = 2 }) {
 
 export default function Statistics() {
   return (
-    <section className="py-16 px-5">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="bg-white/70 dark:bg-slate-800/60 backdrop-blur-sm rounded-3xl p-8 text-center card-shadow border border-gray-100/80 dark:border-slate-700/50 hover:shadow-lg hover:shadow-indigo-500/5 transition-all duration-300"
-            >
-              <div className="text-4xl sm:text-5xl font-extrabold gradient-text mb-2 leading-none">
-                <Counter end={stat.value} duration={2 + i * 0.2} />
-                {stat.suffix}
-              </div>
-              <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">{stat.label}</p>
-            </motion.div>
-          ))}
+    <section id="about" className="py-10 px-6 sm:px-8 lg:px-12 -mt-8">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.6, ease: [0.2, 0.65, 0.3, 0.9] }}
+        className="max-w-7xl mx-auto glass-card p-6 sm:p-8 grid lg:grid-cols-[1.6fr_repeat(4,1fr)] gap-6 lg:gap-4 items-center"
+      >
+        {/* About Me lead */}
+        <div className="lg:pr-6 lg:border-r border-black/5 dark:border-white/10">
+          <div className="inline-flex items-center gap-2 mb-3 text-indigo-600 dark:text-indigo-400">
+            <HiSparkles className="w-4 h-4" />
+            <span className="text-xs font-bold tracking-[0.18em] uppercase">About Me</span>
+          </div>
+          <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+            AI/ML Engineer passionate about building intelligent systems and modern
+            web apps. I bridge cutting-edge research and production-ready products —
+            from LLM pipelines to full-stack platforms.
+          </p>
         </div>
-      </div>
+
+        {/* Stats */}
+        {stats.map((stat, i) => (
+          <motion.div
+            key={stat.label}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.4, delay: 0.1 + i * 0.08 }}
+            className="text-center"
+          >
+            <div className="text-4xl sm:text-5xl font-extrabold gradient-text-animated leading-none mb-1.5">
+              <Counter end={stat.value} duration={2 + i * 0.2} />
+              {stat.suffix}
+            </div>
+            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-medium">{stat.label}</p>
+          </motion.div>
+        ))}
+      </motion.div>
     </section>
   )
 }
