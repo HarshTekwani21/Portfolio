@@ -11,7 +11,10 @@
   --border: rgba(0, 0, 0, 0.06);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* NOTE: do not add `margin:0;padding:0` here — an unlayered universal rule
+   overrides Tailwind's layered padding/margin utilities (px-*, py-*, mx-auto).
+   Tailwind's preflight already resets element margins. */
+* { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;

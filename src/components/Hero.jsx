@@ -74,10 +74,8 @@ export default function Hero() {
       ref={sectionRef}
       className="relative min-h-screen flex items-center pt-28 pb-16 px-6 sm:px-8 lg:px-12 overflow-hidden"
     >
-      <motion.div
-        style={{ y: contentY }}
-        className="relative w-full max-w-7xl mx-auto grid lg:grid-cols-[46%_54%] gap-10 lg:gap-8 items-center"
-      >
+      <motion.div style={{ y: contentY }} className="relative w-full">
+       <div className="max-w-7xl mx-auto grid lg:grid-cols-[46%_54%] gap-10 lg:gap-8 items-center">
         {/* ============ LEFT ============ */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -265,6 +263,7 @@ export default function Hero() {
             ))}
           </div>
         </div>
+       </div>
       </motion.div>
     </section>
   )
