@@ -7,7 +7,7 @@ import {
 import { FaGem, FaRobot, FaMicrosoft } from 'react-icons/fa'
 import { VscGithub } from 'react-icons/vsc'
 import { FaLinkedinIn } from 'react-icons/fa'
-import devImg from '../assets/dev.png'
+import devImg from '../assets/dev.webp'
 
 const socials = [
   { icon: <VscGithub className="w-4 h-4" />, label: 'GitHub', href: 'https://github.com/HarshTekwani21' },
