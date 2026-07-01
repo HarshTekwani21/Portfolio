@@ -3,10 +3,10 @@ import { motion } from 'framer-motion'
 import { HiSparkles } from 'react-icons/hi'
 
 const stats = [
-  { value: 3, suffix: '+', label: 'Years Experience' },
-  { value: 20, suffix: '+', label: 'Projects Shipped' },
-  { value: 15, suffix: '+', label: 'AI Technologies' },
-  { value: 100, suffix: '%', label: 'Dedication' },
+  { value: 2, suffix: '+', label: 'Years Experience' },
+  { value: 10, suffix: '+', label: 'AI Projects' },
+  { value: 15, suffix: '+', label: 'Technologies' },
+  { value: 4, suffix: '', label: 'Companies' },
 ]
 
 function Counter({ end, duration = 2 }) {
@@ -58,9 +58,9 @@ export default function Statistics() {
             <span className="text-xs font-bold tracking-[0.18em] uppercase">About Me</span>
           </div>
           <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
-            AI/ML Engineer passionate about building intelligent systems and modern
-            web apps. I bridge cutting-edge research and production-ready products —
-            from LLM pipelines to full-stack platforms.
+            AI/ML Engineer with hands-on experience building LLM-powered systems,
+            agentic pipelines, and Text-to-SQL solutions across GenAI, RAG, and OCR.
+            Currently pursuing an MCA while shipping production AI at Tagbin.
           </p>
         </div>
 

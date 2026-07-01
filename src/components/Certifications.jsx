@@ -1,35 +1,35 @@
 import { motion } from 'framer-motion'
 import { HiExternalLink } from 'react-icons/hi'
-import { SiGoogle, SiTensorflow } from 'react-icons/si'
-import { FaMicrosoft, FaRobot } from 'react-icons/fa'
+import { SiUdemy, SiAlibabacloud } from 'react-icons/si'
+import { FaAward, FaIndustry } from 'react-icons/fa'
 
 const certs = [
   {
-    title: 'Google Cloud Generative AI',
-    issuer: 'Google Cloud',
-    date: '2025',
-    icon: <SiGoogle className="w-8 h-8 text-blue-500" />,
+    title: 'Certified Developer',
+    issuer: 'Alibaba Cloud',
+    date: 'Achievement',
+    icon: <SiAlibabacloud className="w-8 h-8 text-orange-500" />,
     link: '#',
   },
   {
-    title: 'Azure AI Engineer Associate',
-    issuer: 'Microsoft',
-    date: '2024',
-    icon: <FaMicrosoft className="w-8 h-8 text-blue-600" />,
+    title: 'Django & React Full Stack',
+    issuer: 'Udemy',
+    date: 'Certification',
+    icon: <SiUdemy className="w-8 h-8 text-purple-600" />,
     link: '#',
   },
   {
-    title: 'TensorFlow Developer Certificate',
-    issuer: 'TensorFlow / Google',
-    date: '2024',
-    icon: <SiTensorflow className="w-8 h-8 text-orange-500" />,
+    title: 'Industry 4.0 & Industrial IoT',
+    issuer: 'NPTEL',
+    date: 'Certification',
+    icon: <FaIndustry className="w-8 h-8 text-indigo-600" />,
     link: '#',
   },
   {
-    title: 'OpenAI API Fundamentals',
-    issuer: 'OpenAI / DeepLearning.AI',
-    date: '2025',
-    icon: <FaRobot className="w-8 h-8 text-emerald-600" />,
+    title: 'Leadership & Team Effectiveness',
+    issuer: 'NPTEL',
+    date: 'Certification',
+    icon: <FaAward className="w-8 h-8 text-emerald-600" />,
     link: '#',
   },
 ]

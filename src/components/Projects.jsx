@@ -4,36 +4,28 @@ import { VscGithub } from 'react-icons/vsc'
 
 const projects = [
   {
-    title: 'Ladakh AI Chatbot',
-    desc: 'RAG-powered conversational assistant with vector search, memory and multi-lingual support.',
-    tags: ['LangChain', 'FastAPI', 'React'],
+    title: 'AI Image Moderation Pipeline',
+    desc: 'High-throughput image moderation platform using FastAPI and async worker queues, with multi-layer content moderation via Google Vision API and Gemini.',
+    tags: ['FastAPI', 'Google Vision', 'Gemini', 'Async Queues'],
     github: 'https://github.com/HarshTekwani21',
     demo: '#',
     gradient: 'from-blue-500 via-indigo-500 to-violet-600',
   },
   {
-    title: 'DOW Automation',
-    desc: 'Document workflow engine that automates extraction, classification and routing at scale.',
-    tags: ['Python', 'OpenAI', 'PostgreSQL'],
+    title: 'Conversational & Agentic Chatbots',
+    desc: 'Natural, context-aware conversations powered by LLMs and long-term memory, with speech-to-text and text-to-speech for hands-free interaction.',
+    tags: ['LLMs', 'Memory', 'STT / TTS', 'LangChain'],
     github: 'https://github.com/HarshTekwani21',
     demo: '#',
     gradient: 'from-fuchsia-500 via-purple-500 to-indigo-600',
   },
   {
-    title: 'Multi-Agent Platform',
-    desc: 'Orchestrates autonomous AI agents with tool-use, planning and shared long-term memory.',
-    tags: ['LangGraph', 'Redis', 'Docker'],
+    title: 'AI Life Assistant',
+    desc: 'Context-aware agent leveraging contextual memory and task prioritization, delivering personalized recommendations through LLM reasoning pipelines.',
+    tags: ['LLM Reasoning', 'Context Memory', 'Agents'],
     github: 'https://github.com/HarshTekwani21',
     demo: '#',
     gradient: 'from-emerald-500 via-teal-500 to-cyan-600',
-  },
-  {
-    title: 'DPR Analytics',
-    desc: 'Real-time analytics dashboard with predictive models and interactive data visualisations.',
-    tags: ['TensorFlow', 'Next.js', 'Azure'],
-    github: 'https://github.com/HarshTekwani21',
-    demo: '#',
-    gradient: 'from-orange-500 via-rose-500 to-pink-600',
   },
 ]
 

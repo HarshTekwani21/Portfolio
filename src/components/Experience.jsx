@@ -3,23 +3,29 @@ import { HiArrowRight } from 'react-icons/hi'
 
 const experiences = [
   {
-    role: 'Generative AI Engineer',
-    company: 'Tagbin',
-    period: 'Jan 2025 — Present',
-    desc: 'Building LLM-powered applications, RAG pipelines and autonomous AI agents with LangChain and vector databases.',
+    role: 'AI/ML Engineer',
+    company: 'Tagbin Pvt Ltd, Gurugram',
+    period: 'Nov 2025 — Present',
+    desc: 'Delivering AI business solutions for public & private sectors. Building agentic and Text-to-SQL systems and improving the efficiency of OCR engines.',
     current: true,
   },
   {
-    role: 'Full Stack Developer',
-    company: 'Startup',
-    period: 'Jun 2024 — Dec 2024',
-    desc: 'Shipped full-stack apps with React and FastAPI — REST APIs, auth and optimized database queries.',
+    role: 'Software Engineer',
+    company: 'Augmented Transformation Pvt Ltd',
+    period: 'Jun 2025 — Oct 2025',
+    desc: 'Built RPA business solutions using Blue Prism across multiple projects and integrated Python with Blue Prism to extend automation.',
   },
   {
-    role: 'AI/ML Intern',
-    company: 'AI Lab',
-    period: 'Jan 2024 — May 2024',
-    desc: 'Computer-vision projects, model training pipelines and data preprocessing with TensorFlow and PyTorch.',
+    role: 'Network Engineer Trainee',
+    company: 'Orbit Techsol India Pvt Ltd',
+    period: 'Jan 2025 — May 2025',
+    desc: 'Gained hands-on experience with routing and switching across enterprise networking setups.',
+  },
+  {
+    role: 'AI/ML Apprentice',
+    company: 'Sequantix Pvt Ltd',
+    period: 'Jun 2024 — Sep 2024',
+    desc: 'Worked on AI solutions across multiple projects — built an OCR engine and an agentic pipeline.',
   },
 ]
 

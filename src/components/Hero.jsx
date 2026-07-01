@@ -124,7 +124,7 @@ export default function Hero() {
               transition={{ delay: 0.7, duration: 0.5 }}
               className="text-2xl sm:text-3xl font-bold gradient-text-animated mb-6"
             >
-              AI/ML Engineer &amp; Full Stack Developer
+              AI/ML Engineer &amp; GenAI Developer
             </motion.p>
 
             <motion.p
@@ -133,8 +133,9 @@ export default function Hero() {
               transition={{ delay: 0.9, duration: 0.5 }}
               className="text-lg text-gray-500 dark:text-gray-400 max-w-xl mb-9 leading-relaxed"
             >
-              I build intelligent systems, machine learning pipelines, and elegant web
-              experiences — turning complex AI problems into scalable, production-ready products.
+              I build LLM-powered systems, agentic pipelines, and Text-to-SQL solutions
+              across GenAI, RAG, and OCR — delivering production-ready AI for public and
+              private sector clients.
             </motion.p>
 
             <motion.div
