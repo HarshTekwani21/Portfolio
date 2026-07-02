@@ -1,80 +1,54 @@
 import { motion } from 'framer-motion'
-import { HiExternalLink } from 'react-icons/hi'
-import { SiUdemy, SiAlibabacloud } from 'react-icons/si'
-import { FaAward, FaIndustry } from 'react-icons/fa'
+import { HiArrowUpRight } from 'react-icons/hi2'
 
 const certs = [
-  {
-    title: 'Certified Developer',
-    issuer: 'Alibaba Cloud',
-    date: 'Achievement',
-    icon: <SiAlibabacloud className="w-8 h-8 text-orange-500" />,
-    link: '#',
-  },
-  {
-    title: 'Django & React Full Stack',
-    issuer: 'Udemy',
-    date: 'Certification',
-    icon: <SiUdemy className="w-8 h-8 text-purple-600" />,
-    link: '#',
-  },
-  {
-    title: 'Industry 4.0 & Industrial IoT',
-    issuer: 'NPTEL',
-    date: 'Certification',
-    icon: <FaIndustry className="w-8 h-8 text-indigo-600" />,
-    link: '#',
-  },
-  {
-    title: 'Leadership & Team Effectiveness',
-    issuer: 'NPTEL',
-    date: 'Certification',
-    icon: <FaAward className="w-8 h-8 text-emerald-600" />,
-    link: '#',
-  },
+  { title: 'Certified Developer', issuer: 'Alibaba Cloud', kind: 'achievement' },
+  { title: 'Django & React Full Stack', issuer: 'Udemy', kind: 'certification' },
+  { title: 'Industry 4.0 & Industrial IoT', issuer: 'NPTEL', kind: 'certification' },
+  { title: 'Leadership & Team Effectiveness', issuer: 'NPTEL', kind: 'certification' },
 ]
+
+const ease = [0.22, 1, 0.36, 1]
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="py-20 px-6 sm:px-8 lg:px-12 scroll-mt-28">
-      <div className="max-w-7xl mx-auto">
+    <section id="certifications" className="py-24 sm:py-32 scroll-mt-20 bg-[var(--surface)]/50 border-y border-[var(--line)]">
+      <div className="container-x">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5 }}
-          className="section-header"
+          transition={{ duration: 0.7, ease }}
+          className="mb-14"
         >
-          <p className="section-label">Credentials</p>
+          <p className="eyebrow mb-5">05 // credentials</p>
           <h2 className="section-title">
-            <span className="gradient-text">Certifications</span>
+            Certifications <span className="glow-text">&amp; awards</span>
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 gap-4">
           {certs.map((cert, i) => (
             <motion.div
               key={cert.title}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              whileHover={{ y: -6 }}
-              className="bg-white/70 dark:bg-slate-800/60 backdrop-blur-sm rounded-2xl p-6 card-shadow border border-gray-100/80 dark:border-slate-700/50 hover:shadow-lg hover:shadow-indigo-500/5 hover:border-indigo-100 dark:hover:border-indigo-500/20 transition-all duration-300"
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.6, delay: i * 0.07, ease }}
+              className="tile group p-7 flex items-start justify-between gap-6 bg-[var(--bg)]/60"
             >
-              <div className="mb-4">{cert.icon}</div>
-              <h3 className="text-sm font-bold text-gray-900 dark:text-white leading-snug mb-1">{cert.title}</h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">{cert.issuer}</p>
-              <p className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 mb-4">{cert.date}</p>
-              <a
-                href={cert.link}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors group"
-              >
-                View Credential
-                <HiExternalLink className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-              </a>
+              <div>
+                <p className="mono text-[10px] tracking-[0.2em] uppercase text-[var(--accent-text)] mb-3">
+                  [ {cert.kind} ]
+                </p>
+                <h3 className="font-display text-lg sm:text-xl font-semibold tracking-tight leading-snug mb-1">
+                  {cert.title}
+                </h3>
+                <p className="mono text-[12px] text-[var(--muted)]">{cert.issuer}</p>
+              </div>
+              <span className="flex items-center justify-center w-10 h-10 rounded-lg border border-[var(--line)] shrink-0 transition-all duration-300 group-hover:border-[var(--accent)] group-hover:[box-shadow:0_0_16px_var(--glow)] group-hover:text-[var(--accent-text)]">
+                <HiArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </span>
             </motion.div>
           ))}
         </div>

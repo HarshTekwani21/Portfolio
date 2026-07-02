@@ -1,66 +1,87 @@
 import { motion } from 'framer-motion'
-import { HiMail } from 'react-icons/hi'
+import { HiArrowUpRight, HiOutlineDocumentText } from 'react-icons/hi2'
 import { VscGithub } from 'react-icons/vsc'
 import { FaLinkedinIn } from 'react-icons/fa'
-import { HiOutlineDocumentText } from 'react-icons/hi2'
 
 const links = [
-  { icon: <HiMail className="w-4 h-4" />, label: 'Email', href: 'mailto:harsht3kwani@gmail.com' },
   { icon: <FaLinkedinIn className="w-4 h-4" />, label: 'LinkedIn', href: 'https://linkedin.com/in/harshtekwani' },
   { icon: <VscGithub className="w-4 h-4" />, label: 'GitHub', href: 'https://github.com/HarshTekwani21' },
   { icon: <HiOutlineDocumentText className="w-4 h-4" />, label: 'Resume', href: '/cv.pdf' },
 ]
 
+const ease = [0.22, 1, 0.36, 1]
+
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 px-6 sm:px-8 lg:px-12 scroll-mt-28">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
+    <section id="contact" className="py-28 sm:py-40 scroll-mt-20">
+      <div className="container-x">
+        <motion.p
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5 }}
-          className="section-header"
+          transition={{ duration: 0.7, ease }}
+          className="eyebrow mb-8"
         >
-          <p className="section-label">Contact</p>
-          <h2 className="section-title">
-            Let's Work <span className="gradient-text">Together</span>
-          </h2>
-        </motion.div>
+          06 // contact
+        </motion.p>
 
-        <motion.div
+        <motion.h2
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.8, delay: 0.1, ease }}
+          className="display-hero text-[clamp(2.5rem,8vw,6.5rem)] mb-8"
+        >
+          Let&rsquo;s build
+          <br />
+          <span className="glow-text">together_</span>
+        </motion.h2>
+
+        <motion.p
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-700 p-10 sm:p-14 text-center"
+          transition={{ duration: 0.7, delay: 0.2, ease }}
+          className="mono text-[13px] text-[var(--muted)] leading-relaxed max-w-md mb-12"
         >
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/5 rounded-full blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white/5 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl" />
+          <span className="text-[var(--accent-text)]">$</span> echo &quot;open to new projects,
+          creative ideas &amp; opportunities&quot;
+        </motion.p>
 
-          <div className="relative z-10">
-            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-              Have a project in mind?
-            </h3>
-            <p className="text-indigo-200/80 mb-10 max-w-md mx-auto text-sm sm:text-base leading-relaxed">
-              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              {links.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target={link.href.startsWith('http') ? '_blank' : undefined}
-                  rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold bg-white/15 backdrop-blur-sm text-white rounded-full hover:bg-white/25 transition-all hover:-translate-y-0.5 border border-white/10 hover:border-white/20"
-                >
-                  {link.icon}
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          </div>
+        {/* Giant email link */}
+        <motion.a
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7, delay: 0.3, ease }}
+          href="mailto:harsht3kwani@gmail.com"
+          className="group inline-flex flex-wrap items-center gap-4 mono text-[clamp(1.1rem,3.5vw,2.25rem)] font-bold tracking-tight link-underline mb-14"
+        >
+          harsht3kwani@gmail.com
+          <span className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-[var(--accent)] text-[var(--accent-ink)] [box-shadow:0_0_24px_var(--glow)] transition-transform duration-300 group-hover:rotate-45">
+            <HiArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6" />
+          </span>
+        </motion.a>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="flex flex-wrap gap-3"
+        >
+          {links.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
+              className="btn-outline !py-2.5 !px-5 !text-[11px]"
+            >
+              {link.icon}
+              {link.label}
+            </a>
+          ))}
         </motion.div>
       </div>
     </section>

@@ -2,59 +2,89 @@ import { motion } from 'framer-motion'
 import {
   SiPython, SiLangchain, SiFastapi, SiHuggingface, SiReact, SiNodedotjs,
   SiJavascript, SiDjango, SiFlask, SiOpencv, SiPandas, SiScikitlearn,
+  SiDocker, SiTensorflow,
 } from 'react-icons/si'
-import { FaGem, FaDatabase } from 'react-icons/fa'
+import { FaGem, FaDatabase, FaMicrosoft } from 'react-icons/fa'
 
-const skills = [
-  { name: 'Python', icon: <SiPython />, color: 'text-blue-600' },
-  { name: 'LangChain', icon: <SiLangchain />, color: 'text-green-600' },
-  { name: 'HuggingFace', icon: <SiHuggingface />, color: 'text-yellow-500' },
-  { name: 'Gemini', icon: <FaGem />, color: 'text-blue-500' },
-  { name: 'FastAPI', icon: <SiFastapi />, color: 'text-emerald-600' },
-  { name: 'React', icon: <SiReact />, color: 'text-cyan-500' },
-  { name: 'Node.js', icon: <SiNodedotjs />, color: 'text-green-600' },
-  { name: 'JavaScript', icon: <SiJavascript />, color: 'text-yellow-500' },
-  { name: 'Django', icon: <SiDjango />, color: 'text-emerald-700' },
-  { name: 'Flask', icon: <SiFlask />, color: 'text-gray-800 dark:text-gray-200' },
-  { name: 'OpenCV', icon: <SiOpencv />, color: 'text-blue-500' },
-  { name: 'Pandas', icon: <SiPandas />, color: 'text-indigo-600' },
-  { name: 'NumPy', icon: <FaDatabase />, color: 'text-sky-600' },
-  { name: 'Scikit-Learn', icon: <SiScikitlearn />, color: 'text-orange-500' },
-  { name: 'SQL', icon: <FaDatabase />, color: 'text-rose-500' },
+const groups = [
+  {
+    cmd: '$ ls ./ai_genai',
+    skills: [
+      { name: 'Python', icon: <SiPython /> },
+      { name: 'LangChain', icon: <SiLangchain /> },
+      { name: 'HuggingFace', icon: <SiHuggingface /> },
+      { name: 'Gemini', icon: <FaGem /> },
+      { name: 'TensorFlow', icon: <SiTensorflow /> },
+      { name: 'Scikit-Learn', icon: <SiScikitlearn /> },
+      { name: 'OpenCV', icon: <SiOpencv /> },
+    ],
+  },
+  {
+    cmd: '$ ls ./backend_data',
+    skills: [
+      { name: 'FastAPI', icon: <SiFastapi /> },
+      { name: 'Django', icon: <SiDjango /> },
+      { name: 'Flask', icon: <SiFlask /> },
+      { name: 'SQL', icon: <FaDatabase /> },
+      { name: 'Pandas', icon: <SiPandas /> },
+      { name: 'NumPy', icon: <FaDatabase /> },
+    ],
+  },
+  {
+    cmd: '$ ls ./web_cloud',
+    skills: [
+      { name: 'React', icon: <SiReact /> },
+      { name: 'JavaScript', icon: <SiJavascript /> },
+      { name: 'Node.js', icon: <SiNodedotjs /> },
+      { name: 'Docker', icon: <SiDocker /> },
+      { name: 'Azure', icon: <FaMicrosoft /> },
+    ],
+  },
 ]
+
+const ease = [0.22, 1, 0.36, 1]
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-20 px-6 sm:px-8 lg:px-12 scroll-mt-28">
-      <div className="max-w-7xl mx-auto">
+    <section id="skills" className="py-24 sm:py-32 scroll-mt-20">
+      <div className="container-x">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5 }}
-          className="section-header"
+          transition={{ duration: 0.7, ease }}
+          className="mb-14"
         >
-          <p className="section-label">Expertise</p>
+          <p className="eyebrow mb-5">04 // tech_stack</p>
           <h2 className="section-title">
-            Tech Stack &amp; <span className="gradient-text">Skills</span>
+            Tools of the <span className="glow-text">trade</span>
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {skills.map((skill, i) => (
+        <div className="space-y-10">
+          {groups.map((group, gi) => (
             <motion.div
-              key={skill.name}
-              initial={{ opacity: 0, y: 20 }}
+              key={group.cmd}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.35, delay: (i % 5) * 0.05 }}
-              whileHover={{ y: -8 }}
-              className="group glass-card p-6 text-center cursor-default"
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.6, delay: gi * 0.1, ease }}
+              className="grid sm:grid-cols-[220px_1fr] gap-4 sm:gap-8 items-start section-rule pt-8"
             >
-              <div className={`text-4xl mb-3 flex justify-center ${skill.color} transition-transform duration-300 group-hover:scale-110`}>
-                {skill.icon}
+              <p className="mono text-[12px] tracking-[0.08em] text-[var(--accent-text)] pt-2.5">
+                {group.cmd}
+              </p>
+              <div className="flex flex-wrap gap-2.5">
+                {group.skills.map((skill) => (
+                  <span
+                    key={skill.name}
+                    className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-lg border border-[var(--line)] bg-[var(--surface)]/60 mono text-[13px] hover:border-[var(--accent)] hover:text-[var(--accent-text)] hover:[box-shadow:0_0_16px_var(--glow)] hover:-translate-y-0.5 transition-all duration-300 cursor-default"
+                  >
+                    <span className="text-base">{skill.icon}</span>
+                    {skill.name}
+                  </span>
+                ))}
               </div>
-              <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">{skill.name}</p>
             </motion.div>
           ))}
         </div>

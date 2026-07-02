@@ -1,21 +1,21 @@
-import { motion } from 'framer-motion'
+import { HiArrowUp } from 'react-icons/hi'
 
 export default function Footer() {
   return (
-    <motion.footer
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      className="py-10 px-6 sm:px-8 lg:px-12 border-t border-gray-100/80 dark:border-slate-800"
-    >
-      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-sm text-gray-400 dark:text-gray-500">
-          © {new Date().getFullYear()} Harsh Tekwani. All rights reserved.
+    <footer className="section-rule">
+      <div className="container-x py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p className="mono text-[11px] tracking-[0.14em] text-[var(--muted)]">
+          <span className="text-[var(--accent-text)]">©</span> {new Date().getFullYear()} harsh.tekwani
+          <span className="mx-2 text-[var(--line-strong)]">|</span>
+          all_rights_reserved
         </p>
-        <p className="text-xs text-gray-400 dark:text-gray-500">
-          Built with React + Framer Motion
+        <p className="mono text-[11px] tracking-[0.14em] text-[var(--muted)]">
+          built_with: react + vite <span className="text-[var(--accent-2)]">●</span> sys.online
         </p>
+        <a href="#home" className="icon-btn" aria-label="Back to top">
+          <HiArrowUp className="w-4 h-4" />
+        </a>
       </div>
-    </motion.footer>
+    </footer>
   )
 }
