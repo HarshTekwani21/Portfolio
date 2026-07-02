@@ -18,9 +18,9 @@ const script = [
   { prompt: true, text: 'whoami' },
   { prompt: false, text: 'Harsh Tekwani — AI/ML Engineer' },
   { prompt: true, text: 'cat focus.txt' },
-  { prompt: false, text: 'GenAI · RAG · Agentic Systems · Text-to-SQL' },
-  { prompt: true, text: './status --now' },
-  { prompt: false, text: '● open to opportunities', ok: true },
+  { prompt: false, text: 'Agentic Systems · LLM Finetuning · RAG · Text-to-SQL' },
+  { prompt: true, text: 'ls ./deployed' },
+  { prompt: false, text: 'image_moderation  voice_rag  ocr_service  multi_agents', ok: true },
 ]
 
 function useTypewriter(lines, startDelay = 1200, speed = 34) {
@@ -103,7 +103,7 @@ export default function Hero() {
         >
           <span className="inline-flex items-center gap-2.5 mono text-[11px] tracking-[0.18em] uppercase text-[var(--muted)] border border-[var(--line)] rounded-md px-3.5 py-2">
             <span className="w-2 h-2 rounded-full bg-[var(--accent-2)] animate-blink [box-shadow:0_0_10px_var(--glow-2)]" />
-            sys.status: available_for_hire
+            role: ai/ml_engineer @ tagbin
           </span>
           <span className="hidden sm:block mono text-[11px] tracking-[0.18em] uppercase text-[var(--muted)]">
             loc: gurugram.in // 28.45°N 77.02°E
@@ -130,7 +130,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.5, ease }}
               className="font-display text-xl sm:text-2xl font-medium tracking-tight mb-5"
             >
-              AI/ML Engineer <span className="text-[var(--accent-text)]">//</span> GenAI Developer
+              AI/ML Engineer <span className="text-[var(--accent-text)]">//</span> Agentic Systems &amp; Finetuning
             </motion.p>
 
             <motion.p
@@ -139,9 +139,9 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.65, ease }}
               className="text-[15px] text-[var(--muted)] leading-relaxed max-w-lg mb-9"
             >
-              I build LLM-powered systems, agentic pipelines, and Text-to-SQL solutions
-              across GenAI, RAG, and OCR — delivering production-ready AI for public
-              and private sector clients.
+              I build agentic systems, LLM-powered pipelines, and Text-to-SQL solutions —
+              spanning finetuning, RAG, and OCR — delivering production-ready AI for
+              public and private sector clients.
             </motion.p>
 
             <motion.div

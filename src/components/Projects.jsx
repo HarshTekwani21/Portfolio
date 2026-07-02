@@ -4,28 +4,46 @@ import { VscGithub } from 'react-icons/vsc'
 
 const projects = [
   {
-    id: 'img-moderation',
+    id: 'image-moderation',
     title: 'AI Image Moderation Pipeline',
-    desc: 'High-throughput image moderation platform using FastAPI and async worker queues, with multi-layer content moderation via Google Vision API and Gemini.',
-    tags: ['FastAPI', 'Google Vision', 'Gemini', 'Async Queues'],
-    github: 'https://github.com/HarshTekwani21',
-    year: '2025',
+    desc: 'Production-oriented moderation system with FastAPI, async worker queues, Google Vision + Gemini checks, FAISS duplicate detection, a deterministic rule engine, and a human review workflow.',
+    tags: ['FastAPI', 'Gemini', 'Google Vision', 'FAISS'],
+    github: 'https://github.com/HarshTekwani21/Image_Moderation',
   },
   {
     id: 'agentic-chatbots',
     title: 'Conversational & Agentic Chatbots',
-    desc: 'Natural, context-aware conversations powered by LLMs and long-term memory, with speech-to-text and text-to-speech for hands-free interaction.',
-    tags: ['LLMs', 'Memory', 'STT / TTS', 'LangChain'],
+    desc: 'Natural, context-aware conversations using LLMs and memory for human-like interactions — with speech-to-text and text-to-speech for hands-free communication.',
+    tags: ['LLMs', 'Memory', 'STT / TTS', 'Agents'],
     github: 'https://github.com/HarshTekwani21',
-    year: '2025',
   },
   {
-    id: 'life-assistant',
+    id: 'ai-life-assistant',
     title: 'AI Life Assistant',
-    desc: 'Context-aware agent leveraging contextual memory and task prioritization, delivering personalized recommendations through LLM reasoning pipelines.',
+    desc: 'Context-aware agent utilizing contextual memory and task prioritization, delivering personalized recommendations through LLM reasoning pipelines.',
     tags: ['LLM Reasoning', 'Context Memory', 'Agents'],
     github: 'https://github.com/HarshTekwani21',
-    year: '2024',
+  },
+  {
+    id: 'taskbotix',
+    title: 'TaskBotIX — Multi-Agent System',
+    desc: 'Create and manage document-grounded AI agents with Groq and Ollama — multi-user authentication, per-user agent workspaces, and a FastAPI backend.',
+    tags: ['AI Agents', 'FastAPI', 'Ollama', 'LangChain'],
+    github: 'https://github.com/HarshTekwani21/TaskBotIX',
+  },
+  {
+    id: 'ocr-service',
+    title: 'OCR Microservice',
+    desc: 'High-performance OCR service extracting text from images and PDFs with multi-language support — a clean REST API with structured JSON output, Docker-ready.',
+    tags: ['OCR', 'FastAPI', 'PDF', 'Docker'],
+    github: 'https://github.com/HarshTekwani21/Ocr_Service',
+  },
+  {
+    id: 'diffusor-imageart',
+    title: 'Diffusor ImageArt Generation',
+    desc: 'Text-to-image studio powered by FLUX 9B and Google Nano Banana via Hugging Face Diffusers — prompt-to-artwork generation and intelligent image editing on CUDA.',
+    tags: ['Diffusion', 'FLUX', 'PyTorch', 'HuggingFace'],
+    github: 'https://github.com/HarshTekwani21/Diffusor_ImageArt_Genration',
   },
 ]
 
@@ -33,7 +51,7 @@ const ease = [0.22, 1, 0.36, 1]
 
 export default function Projects() {
   return (
-    <section id="work" className="py-24 sm:py-32 scroll-mt-20">
+    <section id="work" className="py-12 sm:py-16 scroll-mt-20">
       <div className="container-x">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -77,7 +95,6 @@ export default function Projects() {
                 <span className="mono text-[10px] tracking-[0.12em] text-[var(--muted)]">
                   module_0{i + 1} / {p.id}.sys
                 </span>
-                <span className="ml-auto mono text-[10px] text-[var(--muted)]">{p.year}</span>
               </div>
 
               <div className="p-6 flex flex-col grow">
@@ -97,7 +114,7 @@ export default function Projects() {
                 </div>
                 <span className="mono text-[11px] tracking-[0.14em] uppercase text-[var(--accent-text)] inline-flex items-center gap-1.5">
                   <VscGithub className="w-3.5 h-3.5" />
-                  open_source
+                  {p.github.replace(/\/$/, '').split('/').length > 4 ? 'open_source' : 'view_github'}
                   <HiArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
               </div>

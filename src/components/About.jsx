@@ -44,7 +44,7 @@ function Counter({ end, duration = 1.8 }) {
 
 export default function About() {
   return (
-    <section id="about" className="py-24 sm:py-32 scroll-mt-20">
+    <section id="about" className="py-12 sm:py-16 scroll-mt-20">
       <div className="container-x">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -70,10 +70,12 @@ export default function About() {
             className="tile hud-corners lg:col-span-3 p-8 sm:p-10 flex flex-col justify-between gap-10"
           >
             <p className="text-lg sm:text-xl leading-relaxed text-[var(--muted)] max-w-2xl">
-              <span className="text-[var(--text)]">AI/ML Engineer with hands-on experience</span> building
-              LLM-powered systems, agentic pipelines, and Text-to-SQL solutions across GenAI,
-              RAG, and OCR. An MCA graduate shipping production AI at Tagbin
-              for public and private sector clients.
+              <span className="text-[var(--text)]">AI/ML Engineer at Tagbin</span>, building agentic and
+              Text-to-SQL systems and improving OCR engines for public and private sector
+              clients. Before that I automated enterprise workflows with RPA — integrating
+              Python with Blue Prism — and cut my teeth building OCR engines and agentic
+              pipelines. An MCA graduate who ships production AI end to end: from
+              finetuning and RAG pipelines to FastAPI services in deployment.
             </p>
             <div className="flex flex-wrap gap-x-10 gap-y-4">
               <div>
@@ -82,7 +84,7 @@ export default function About() {
               </div>
               <div>
                 <p className="mono text-[10px] tracking-[0.2em] uppercase text-[var(--accent-text)] mb-1.5">$ focus</p>
-                <p className="font-display font-medium">GenAI · Agents · RAG</p>
+                <p className="font-display font-medium">Agentic Systems · Finetuning · RAG</p>
               </div>
               <div>
                 <p className="mono text-[10px] tracking-[0.2em] uppercase text-[var(--accent-text)] mb-1.5">$ education</p>

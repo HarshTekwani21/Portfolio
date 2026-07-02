@@ -1,6 +1,6 @@
 const items = [
-  'Generative AI', 'RAG Pipelines', 'Text-to-SQL', 'Agentic Systems',
-  'LLM Engineering', 'OCR', 'Computer Vision', 'FastAPI', 'LangChain',
+  'Agentic Systems', 'LLM Finetuning', 'RAG Pipelines', 'Text-to-SQL',
+  'OCR', 'Computer Vision', 'Diffusion Models', 'FastAPI', 'LangChain',
 ]
 
 export default function Marquee() {

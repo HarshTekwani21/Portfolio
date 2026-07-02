@@ -46,7 +46,7 @@ const ease = [0.22, 1, 0.36, 1]
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 sm:py-32 scroll-mt-20">
+    <section id="skills" className="py-12 sm:py-16 scroll-mt-20">
       <div className="container-x">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

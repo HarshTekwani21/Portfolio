@@ -13,7 +13,7 @@ const ease = [0.22, 1, 0.36, 1]
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-28 sm:py-40 scroll-mt-20">
+    <section id="contact" className="py-16 sm:py-24 scroll-mt-20">
       <div className="container-x">
         <motion.p
           initial={{ opacity: 0, y: 24 }}
@@ -44,8 +44,8 @@ export default function Contact() {
           transition={{ duration: 0.7, delay: 0.2, ease }}
           className="mono text-[13px] text-[var(--muted)] leading-relaxed max-w-md mb-12"
         >
-          <span className="text-[var(--accent-text)]">$</span> echo &quot;open to new projects,
-          creative ideas &amp; opportunities&quot;
+          <span className="text-[var(--accent-text)]">$</span> echo &quot;have a project or an
+          idea in mind? drop me a line&quot;
         </motion.p>
 
         {/* Giant email link */}

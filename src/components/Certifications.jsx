@@ -12,7 +12,7 @@ const ease = [0.22, 1, 0.36, 1]
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="py-24 sm:py-32 scroll-mt-20 bg-[var(--surface)]/50 border-y border-[var(--line)]">
+    <section id="certifications" className="py-12 sm:py-16 scroll-mt-20 bg-[var(--surface)]/50 border-y border-[var(--line)]">
       <div className="container-x">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
