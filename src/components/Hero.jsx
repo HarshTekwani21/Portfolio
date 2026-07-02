@@ -20,7 +20,7 @@ const script = [
   { prompt: true, text: 'cat focus.txt' },
   { prompt: false, text: 'Agentic Systems · LLM Finetuning · RAG · Text-to-SQL' },
   { prompt: true, text: 'ls ./deployed' },
-  { prompt: false, text: 'image_moderation  voice_rag  ocr_service  multi_agents', ok: true },
+  { prompt: false, text: 'image_moderation  agentic_chatbots  ocr_service  multi_agents', ok: true },
 ]
 
 function useTypewriter(lines, startDelay = 1200, speed = 34) {
